@@ -1,0 +1,24 @@
+{
+  "name": "bowling-game",
+  "version": "1.0.0",
+  "description": "A game that simulates a bowling game",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mWagnberg/Bowling-Game.git"
+  },
+  "keywords": [
+    "JavaScript",
+    "Node.js",
+    "Bowling-Game"
+  ],
+  "author": "Michael Wagnberg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mWagnberg/Bowling-Game/issues"
+  },
+  "homepage": "https://github.com/mWagnberg/Bowling-Game#readme"
+}
