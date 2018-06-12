@@ -5,6 +5,7 @@ let path = require('path')
 let app = express()
 let handlebars = require('express-handlebars')
 let bodyParser = require('body-parser')
+let Player = require('./player')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -29,6 +30,10 @@ app.set('view engine', '.handlebars')
  */
 app.get('/', function (request, response) {
   response.render('index')
+})
+
+app.post('/throwBall', function (request, response) {
+  response.redirect('/')
 })
 
 // Specify the port
