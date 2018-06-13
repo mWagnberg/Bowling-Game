@@ -1,6 +1,9 @@
 'use strict'
 
-let maxRandom = 11
+module.exports = {
+  throwBowlingBall: throwBowlingBall(),
+  secondRound: secondRound()
+}
 
 /**
  * This will run when throwing a bowling ball
@@ -17,10 +20,11 @@ function throwBowlingBall (n) {
  * @param {*} n are the amount of pins
  */
 function secondRound (n) {
+  const maxRandom = 11
   let computation = maxRandom - n
   let secondAmountOfPins = Math.floor(Math.random() * computation)
   console.log('SECOND - ' + secondAmountOfPins)
 }
 
-let firstThrow = throwBowlingBall(maxRandom)
-secondRound(firstThrow)
+/* let firstThrow = throwBowlingBall(maxRandom)
+secondRound(firstThrow) */
