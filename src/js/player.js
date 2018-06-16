@@ -1,9 +1,10 @@
 'use strict'
 
 class Player {
-  constructor (name, scoreArr) {
+  constructor (name, scoreArr, totalScoreArr) {
     this.name = name
     this.scoreArr = scoreArr
+    this.totalScoreArr = totalScoreArr
   }
 
   getName () {
@@ -12,6 +13,15 @@ class Player {
 
   getScores () {
     return this.scoreArr
+  }
+
+  setTotalScore (n) {
+    this.totalScoreArr.push(n)
+  }
+
+  getTotalScore () {
+    // return this.scoreArr[n] + this.scoreArr[n + 1]
+    return this.totalScoreArr
   }
 
   addScore (n) {

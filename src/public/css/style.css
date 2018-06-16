@@ -1,4 +1,4 @@
-.headerSize {
+/* .headerSize {
   width: 50px;
   height: 30px;
 }
@@ -6,4 +6,12 @@
 .cellSize {
   width: 50%;
   height: 20px;
+} */
+
+table {
+  table-layout: fixed;
+}
+
+table th {
+  height: 15px;
 }
