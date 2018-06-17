@@ -34,6 +34,9 @@ let player2Arr = []
 let player2TotalScoreArr = []
 let player2 = new Player('Player 2', player2Arr, player2TotalScoreArr, 0, 0, 0, true)
 
+let btn1Dis = 'enabled'
+let btn2Dis = 'disabled'
+
 /* let roundCounter = 0
 let counter = 0
 let firstThrow = 0
@@ -91,6 +94,13 @@ function playerPlay (player) {
       console.log('SCORE - ' + player.getScores())
       addToTotalScoreArr(player)
       player.counter = 0
+      if (player.getName() === 'Player 1') {
+        btn1Dis = 'disabled'
+        btn2Dis = 'enabled'
+      } else if (player.getName() === 'Player 2') {
+        btn1Dis = 'enabled'
+        btn2Dis = 'disabled'
+      }
     }
   } else {
     console.log('TOLD YOU!')
@@ -101,7 +111,7 @@ function playerPlay (player) {
  * This is getting a index page
  */
 app.get('/', function (request, response) {
-  response.render('index', {scoreP1: player1.getScores(), scoreP2: player2.getScores(), totalScoreP2: player2.getTotalScore(), totalScoreP1: player1.getTotalScore()})
+  response.render('index', {scoreP1: player1.getScores(), scoreP2: player2.getScores(), totalScoreP2: player2.getTotalScore(), totalScoreP1: player1.getTotalScore(), player1BtnDisabled: btn1Dis, player2BtnDisabled: btn2Dis})
 })
 
 /**
