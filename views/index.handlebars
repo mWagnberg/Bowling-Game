@@ -1,53 +1,112 @@
 <h1>Bowling Game</h1>
-<table border="1 solid black" style="width:100%">
-  <tr>
-    <th colspan="2" style="width:10%">1</th>
-    <th colspan="2" style="width:10%">2</th>
-    <th colspan="2" style="width:10%">3</th>
-    <th colspan="2" style="width:10%">4</th>
-    <th colspan="2" style="width:10%">5</th>
-    <th colspan="2" style="width:10%">6</th>
-    <th colspan="2" style="width:10%">7</th>
-    <th colspan="2" style="width:10%">8</th>
-    <th colspan="2" style="width:10%">9</th>
-    <th colspan="2" style="width:10%">10</th>
-  </tr>
-  <tr>
-    <th id="cell1" style="width:50%">{{score.[0]}}</th>
-    <th id="cell2" style="width:50%">{{score.[1]}}</th>
-    <th id="cell3" style="width:50%">{{score.[2]}}</th>
-    <th id="cell4" style="width:50%">{{score.[3]}}</th>
-    <th id="cell5" style="width:50%">{{score.[4]}}</th>
-    <th id="cell6" style="width:50%">{{score.[5]}}</th>
-    <th id="cell7" style="width:50%">{{score.[6]}}</th>
-    <th id="cell8" style="width:50%">{{score.[7]}}</th>
-    <th id="cell9" style="width:50%">{{score.[8]}}</th>
-    <th id="cell10" style="width:50%">{{score.[9]}}</th>
-    <th id="cell11" style="width:50%">{{score.[10]}}</th>
-    <th id="cell12" style="width:50%">{{score.[11]}}</th>
-    <th id="cell13" style="width:50%">{{score.[12]}}</th>
-    <th id="cell14" style="width:50%">{{score.[13]}}</th>
-    <th id="cell15" style="width:50%">{{score.[14]}}</th>
-    <th id="cell16" style="width:50%">{{score.[15]}}</th>
-    <th id="cell17" style="width:50%">{{score.[16]}}</th>
-    <th id="cell18" style="width:50%">{{score.[17]}}</th>
-    <th id="cell19" style="width:50%">{{score.[18]}}</th>
-    <th id="cell20" style="width:50%">{{score.[19]}}</th>
-  </tr>
-  <tr>
-    <th id="total1" colspan="2">{{totalScore.[0]}}</th>
-    <th id="total2" colspan="2">{{totalScore.[1]}}</th>
-    <th id="total3" colspan="2">{{totalScore.[2]}}</th>
-    <th id="total4" colspan="2">{{totalScore.[3]}}</th>
-    <th id="total5" colspan="2">{{totalScore.[4]}}</th>
-    <th id="total6" colspan="2">{{totalScore.[5]}}</th>
-    <th id="total7" colspan="2">{{totalScore.[6]}}</th>
-    <th id="total8" colspan="2">{{totalScore.[7]}}</th>
-    <th id="total9" colspan="2">{{totalScore.[8]}}</th>
-    <th id="total10" colspan="2">{{totalScore.[9]}}</th>
-  </tr>
-</table>
+<div id="player1">
+  <h2>Player 1</h2>
+  <table border="1 solid black" style="width:100%">
+    <tr>
+      <th colspan="2" style="width:10%">1</th>
+      <th colspan="2" style="width:10%">2</th>
+      <th colspan="2" style="width:10%">3</th>
+      <th colspan="2" style="width:10%">4</th>
+      <th colspan="2" style="width:10%">5</th>
+      <th colspan="2" style="width:10%">6</th>
+      <th colspan="2" style="width:10%">7</th>
+      <th colspan="2" style="width:10%">8</th>
+      <th colspan="2" style="width:10%">9</th>
+      <th colspan="2" style="width:10%">10</th>
+    </tr>
+    <tr>
+      <th id="cell1" style="width:50%">{{scoreP1.[0]}}</th>
+      <th id="cell2" style="width:50%">{{scoreP1.[1]}}</th>
+      <th id="cell3" style="width:50%">{{scoreP1.[2]}}</th>
+      <th id="cell4" style="width:50%">{{scoreP1.[3]}}</th>
+      <th id="cell5" style="width:50%">{{scoreP1.[4]}}</th>
+      <th id="cell6" style="width:50%">{{scoreP1.[5]}}</th>
+      <th id="cell7" style="width:50%">{{scoreP1.[6]}}</th>
+      <th id="cell8" style="width:50%">{{scoreP1.[7]}}</th>
+      <th id="cell9" style="width:50%">{{scoreP1.[8]}}</th>
+      <th id="cell10" style="width:50%">{{scoreP1.[9]}}</th>
+      <th id="cell11" style="width:50%">{{scoreP1.[10]}}</th>
+      <th id="cell12" style="width:50%">{{scoreP1.[11]}}</th>
+      <th id="cell13" style="width:50%">{{scoreP1.[12]}}</th>
+      <th id="cell14" style="width:50%">{{scoreP1.[13]}}</th>
+      <th id="cell15" style="width:50%">{{scoreP1.[14]}}</th>
+      <th id="cell16" style="width:50%">{{scoreP1.[15]}}</th>
+      <th id="cell17" style="width:50%">{{scoreP1.[16]}}</th>
+      <th id="cell18" style="width:50%">{{scoreP1.[17]}}</th>
+      <th id="cell19" style="width:50%">{{scoreP1.[18]}}</th>
+      <th id="cell20" style="width:50%">{{scoreP1.[19]}}</th>
+    </tr>
+    <tr>
+      <th id="total1" colspan="2">{{totalScoreP1.[0]}}</th>
+      <th id="total2" colspan="2">{{totalScoreP1.[1]}}</th>
+      <th id="total3" colspan="2">{{totalScoreP1.[2]}}</th>
+      <th id="total4" colspan="2">{{totalScoreP1.[3]}}</th>
+      <th id="total5" colspan="2">{{totalScoreP1.[4]}}</th>
+      <th id="total6" colspan="2">{{totalScoreP1.[5]}}</th>
+      <th id="total7" colspan="2">{{totalScoreP1.[6]}}</th>
+      <th id="total8" colspan="2">{{totalScoreP1.[7]}}</th>
+      <th id="total9" colspan="2">{{totalScoreP1.[8]}}</th>
+      <th id="total10" colspan="2">{{totalScoreP1.[9]}}</th>
+    </tr>
+  </table>
 
-<form action="/throwBall" method="post">
-  <input type="submit" value="Throw ball">
-</form>
+  <form action="/throwBallPlayer1" method="post">
+    <input type="submit" value="Throw ball">
+  </form>
+</div>
+
+<div id="player2">
+  <h2>Player 2</h2>
+  <table border="1 solid black" style="width:100%">
+    <tr>
+      <th colspan="2" style="width:10%">1</th>
+      <th colspan="2" style="width:10%">2</th>
+      <th colspan="2" style="width:10%">3</th>
+      <th colspan="2" style="width:10%">4</th>
+      <th colspan="2" style="width:10%">5</th>
+      <th colspan="2" style="width:10%">6</th>
+      <th colspan="2" style="width:10%">7</th>
+      <th colspan="2" style="width:10%">8</th>
+      <th colspan="2" style="width:10%">9</th>
+      <th colspan="2" style="width:10%">10</th>
+    </tr>
+    <tr>
+      <th id="cell1" style="width:50%">{{scoreP2.[0]}}</th>
+      <th id="cell2" style="width:50%">{{scoreP2.[1]}}</th>
+      <th id="cell3" style="width:50%">{{scoreP2.[2]}}</th>
+      <th id="cell4" style="width:50%">{{scoreP2.[3]}}</th>
+      <th id="cell5" style="width:50%">{{scoreP2.[4]}}</th>
+      <th id="cell6" style="width:50%">{{scoreP2.[5]}}</th>
+      <th id="cell7" style="width:50%">{{scoreP2.[6]}}</th>
+      <th id="cell8" style="width:50%">{{scoreP2.[7]}}</th>
+      <th id="cell9" style="width:50%">{{scoreP2.[8]}}</th>
+      <th id="cell10" style="width:50%">{{scoreP2.[9]}}</th>
+      <th id="cell11" style="width:50%">{{scoreP2.[10]}}</th>
+      <th id="cell12" style="width:50%">{{scoreP2.[11]}}</th>
+      <th id="cell13" style="width:50%">{{scoreP2.[12]}}</th>
+      <th id="cell14" style="width:50%">{{scoreP2.[13]}}</th>
+      <th id="cell15" style="width:50%">{{scoreP2.[14]}}</th>
+      <th id="cell16" style="width:50%">{{scoreP2.[15]}}</th>
+      <th id="cell17" style="width:50%">{{scoreP2.[16]}}</th>
+      <th id="cell18" style="width:50%">{{scoreP2.[17]}}</th>
+      <th id="cell19" style="width:50%">{{scoreP2.[18]}}</th>
+      <th id="cell20" style="width:50%">{{scoreP2.[19]}}</th>
+    </tr>
+    <tr>
+      <th id="total1" colspan="2">{{totalScoreP2.[0]}}</th>
+      <th id="total2" colspan="2">{{totalScoreP2.[1]}}</th>
+      <th id="total3" colspan="2">{{totalScoreP2.[2]}}</th>
+      <th id="total4" colspan="2">{{totalScoreP2.[3]}}</th>
+      <th id="total5" colspan="2">{{totalScoreP2.[4]}}</th>
+      <th id="total6" colspan="2">{{totalScoreP2.[5]}}</th>
+      <th id="total7" colspan="2">{{totalScoreP2.[6]}}</th>
+      <th id="total8" colspan="2">{{totalScoreP2.[7]}}</th>
+      <th id="total9" colspan="2">{{totalScoreP2.[8]}}</th>
+      <th id="total10" colspan="2">{{totalScoreP2.[9]}}</th>
+    </tr>
+  </table>
+
+  <form action="/throwBallPlayer2" method="post">
+    <input type="submit" value="Throw ball">
+  </form>
+</div>
