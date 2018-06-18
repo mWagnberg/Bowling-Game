@@ -37,23 +37,35 @@ let player2 = new Player('Player 2', player2Arr, player2TotalScoreArr, 0, 0, 0, 
 let btn1Dis = 'enabled'
 let btn2Dis = 'disabled'
 
-/* let roundCounter = 0
-let counter = 0
-let firstThrow = 0
-let run = true */
+function setButtonToDisabled (player) {
+  if (player.getName() === 'Player 1') {
+    btn1Dis = 'disabled'
+    btn2Dis = 'enabled'
+  } else if (player.getName() === 'Player 2') {
+    btn1Dis = 'enabled'
+    btn2Dis = 'disabled'
+  }
+}
 
 function throwBowlingBall (n, player) {
   if (player.counter === 1) {
     let amountOfPins = Math.floor(Math.random() * n)
     // console.log('FIRST - ' + amountOfPins)
-    /* if (amountOfPins === 10) {
-      player1.addScore(' ')
-      player1.addScore('X')
-    } */
-    player.addScore(amountOfPins)
-    return amountOfPins
+    if (amountOfPins === 10) {
+      player.addScore('X')
+      player.addScore(' ')
+      player.counter = 0
+      setButtonToDisabled(player)
+    } else {
+      player.addScore(String(amountOfPins))
+      return amountOfPins
+    }
   } else if (player.counter === 2) {
-    player.addScore(n)
+    if ((parseInt(player.getScores()[player.getScores().length - 1]) + n) === 10) {
+      player.addScore('/')
+    } else {
+      player.addScore(String(n))
+    }
   }
 }
 
@@ -65,12 +77,53 @@ function secondRound (n) {
   // console.log('SECOND - ' + secondAmountOfPins)
 }
 
-function addToTotalScoreArr (player) {
+function ifSpare (arr) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === '/') {
+      return true
+    }
+  }
+}
+
+function ifStrike (arr) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === 'X') {
+      return true
+    }
+  }
+}
+
+function addToTotalScoreArr (player, counter, roundCounter) {
   let total = 0
-  for (let i = 0; i < player.getScores().length; i++) {
-    total += player.getScores()[i]
+  let newRound = parseInt(player.getScores()[player.getScores().length - 1]) + parseInt(player.getScores()[player.getScores().length - 2])
+  let previousRound = [player.getScores()[player.getScores().length - 3], player.getScores()[player.getScores().length - 4]]
+  console.log('NEW ROUND - ' + newRound)
+  console.log('TOTAL SCORE - ' + player.getTotalSumScore())
+  if (roundCounter === 1) {
+    total += newRound
+  } else {
+    if (ifStrike(previousRound)) {
+      total += 10 + newRound + parseInt(player.getTotalSumScore())
+      player.setTotalScore(total)
+      total += newRound
+    } else if (ifSpare(previousRound)) {
+      total += 10 + newRound + parseInt(player.getTotalSumScore())
+    } else {
+      total += newRound + parseInt(player.getTotalSumScore())
+    }
   }
   player.setTotalScore(total)
+  /* for (let i = 0; i < player.getScores().length; i++) {
+    if (player.getScores()[i] === 'X') {
+      total += 10 + parseInt(player.getScores()[i + 2]) + parseInt(player.getScores()[i + 3])
+      player.setTotalScore(total)
+    } else if (player.getScores()[i] === ' ') {
+      total += 0
+    } else {
+      total += parseInt(player.getScores()[i])
+    }
+  }
+  player.setTotalScore(total) */
 }
 
 function playerPlay (player) {
@@ -92,15 +145,9 @@ function playerPlay (player) {
       console.log('SECONDTHROW - ' + second)
       throwBowlingBall(second, player)
       console.log('SCORE - ' + player.getScores())
-      addToTotalScoreArr(player)
+      addToTotalScoreArr(player, player.counter, player.roundCounter)
       player.counter = 0
-      if (player.getName() === 'Player 1') {
-        btn1Dis = 'disabled'
-        btn2Dis = 'enabled'
-      } else if (player.getName() === 'Player 2') {
-        btn1Dis = 'enabled'
-        btn2Dis = 'disabled'
-      }
+      setButtonToDisabled(player)
     }
   } else {
     console.log('TOLD YOU!')

@@ -27,6 +27,10 @@ class Player {
     return this.totalScoreArr
   }
 
+  getTotalSumScore () {
+    return this.totalScoreArr[this.totalScoreArr.length - 1]
+  }
+
   addScore (n) {
     this.scoreArr.push(n)
   }
