@@ -95,7 +95,14 @@ function ifStrike (arr) {
 
 function addToTotalScoreArr (player, counter, roundCounter) {
   let total = 0
-  let newRound = parseInt(player.getScores()[player.getScores().length - 1]) + parseInt(player.getScores()[player.getScores().length - 2])
+  let newRoundArr = [player.getScores()[player.getScores().length - 1], player.getScores()[player.getScores().length - 2]]
+  let newRound = 0
+  if (ifSpare(newRoundArr)) {
+    let compute = 10 - parseInt(player.getScores()[player.getScores().length - 2])
+    newRound = parseInt(player.getScores()[player.getScores().length - 2]) + compute + 10
+  } else {
+    newRound = parseInt(player.getScores()[player.getScores().length - 1]) + parseInt(player.getScores()[player.getScores().length - 2])
+  }
   let previousRound = [player.getScores()[player.getScores().length - 3], player.getScores()[player.getScores().length - 4]]
   console.log('NEW ROUND - ' + newRound)
   console.log('TOTAL SCORE - ' + player.getTotalSumScore())
@@ -106,8 +113,6 @@ function addToTotalScoreArr (player, counter, roundCounter) {
       total += 10 + newRound + parseInt(player.getTotalSumScore())
       player.setTotalScore(total)
       total += newRound
-    } else if (ifSpare(previousRound)) {
-      total += 10 + newRound + parseInt(player.getTotalSumScore())
     } else {
       total += newRound + parseInt(player.getTotalSumScore())
     }
