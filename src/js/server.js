@@ -26,6 +26,9 @@ app.engine('.handlebars', handlebars({
 
 app.set('view engine', '.handlebars')
 
+/**
+ * This will setup the two players that will play the game
+ */
 let player1Arr = []
 let player1TotalScoreArr = []
 let player1 = new Player('Player 1', player1Arr, player1TotalScoreArr, 0, 0, 0, true)
@@ -37,6 +40,10 @@ let player2 = new Player('Player 2', player2Arr, player2TotalScoreArr, 0, 0, 0, 
 let btn1Dis = 'enabled'
 let btn2Dis = 'disabled'
 
+/**
+ * This will help for just one player to play at each time
+ * @param {*} player is the player belonging to the button
+ */
 function setButtonToDisabled (player) {
   if (player.getName() === 'Player 1') {
     btn1Dis = 'disabled'
@@ -47,10 +54,15 @@ function setButtonToDisabled (player) {
   }
 }
 
+/**
+ * This function simulates a throw with a bowling ball. If the random number will be a strike, a X will be pushed
+ * to the array followed by an empty string.
+ * @param {*} n is the maximum amount of pins that can be thrown down
+ * @param {*} player is the player that throws the ball
+ */
 function throwBowlingBall (n, player) {
   if (player.counter === 1) {
     let amountOfPins = Math.floor(Math.random() * n)
-    // console.log('FIRST - ' + amountOfPins)
     if (amountOfPins === 10) {
       player.addScore('X')
       player.addScore(' ')
@@ -69,14 +81,22 @@ function throwBowlingBall (n, player) {
   }
 }
 
+/**
+ * This is for calculate the amount of pins that will be the maximum of pins that can be thrown down in the
+ * second throw
+ * @param {*} n is the amount of pins that has been thrown down from the first throw
+ */
 function secondRound (n) {
   const maxRandom = 11
   let computation = maxRandom - n
   let secondAmountOfPins = Math.floor(Math.random() * computation)
   return secondAmountOfPins
-  // console.log('SECOND - ' + secondAmountOfPins)
 }
 
+/**
+ * This will check if the round contains a spare
+ * @param {*} arr are the two "numbers" that will be checked
+ */
 function ifSpare (arr) {
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] === '/') {
@@ -85,6 +105,10 @@ function ifSpare (arr) {
   }
 }
 
+/**
+ * This will check if the round contains a strike
+ * @param {*} arr are the two "numbers" that will be checked
+ */
 function ifStrike (arr) {
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] === 'X') {
@@ -93,6 +117,13 @@ function ifStrike (arr) {
   }
 }
 
+/**
+ * This will add the scores to the total summary of a players score. The add to the total score array
+ * will depend on if a spare or strike has been done.
+ * @param {*} player is the specific player
+ * @param {*} counter is the counter of the player; 1 or 2
+ * @param {*} roundCounter is the round; 1 - 10
+ */
 function addToTotalScoreArr (player, counter, roundCounter) {
   let total = 0
   let newRoundArr = [player.getScores()[player.getScores().length - 1], player.getScores()[player.getScores().length - 2]]
@@ -104,8 +135,6 @@ function addToTotalScoreArr (player, counter, roundCounter) {
     newRound = parseInt(player.getScores()[player.getScores().length - 1]) + parseInt(player.getScores()[player.getScores().length - 2])
   }
   let previousRound = [player.getScores()[player.getScores().length - 3], player.getScores()[player.getScores().length - 4]]
-  console.log('NEW ROUND - ' + newRound)
-  console.log('TOTAL SCORE - ' + player.getTotalSumScore())
   if (roundCounter === 1) {
     total += newRound
   } else {
@@ -118,44 +147,33 @@ function addToTotalScoreArr (player, counter, roundCounter) {
     }
   }
   player.setTotalScore(total)
-  /* for (let i = 0; i < player.getScores().length; i++) {
-    if (player.getScores()[i] === 'X') {
-      total += 10 + parseInt(player.getScores()[i + 2]) + parseInt(player.getScores()[i + 3])
-      player.setTotalScore(total)
-    } else if (player.getScores()[i] === ' ') {
-      total += 0
-    } else {
-      total += parseInt(player.getScores()[i])
-    }
-  }
-  player.setTotalScore(total) */
 }
 
+/**
+ * This will run the game
+ * @param {*} player is the player the plays the game
+ */
 function playerPlay (player) {
   player.counter++
-  console.log('COUNTER - ' + player.counter)
+
   if (player.run) {
     if (player.counter === 1) {
       player.roundCounter++
-      console.log('ROUND COUNTER - ' + player.roundCounter)
+
       if (player.roundCounter > 10) {
         console.log('GAME OVER')
-        // response.redirect('/')
-        player1.run = false
+        player.run = false
       }
       player.firstThrow = throwBowlingBall(11, player)
-      console.log('FIRSTTHROW - ' + player.firstThrow)
     } else if (player.counter === 2) {
       let second = secondRound(player.firstThrow)
-      console.log('SECONDTHROW - ' + second)
       throwBowlingBall(second, player)
-      console.log('SCORE - ' + player.getScores())
       addToTotalScoreArr(player, player.counter, player.roundCounter)
       player.counter = 0
       setButtonToDisabled(player)
     }
   } else {
-    console.log('TOLD YOU!')
+    console.log('THE GAME IS OVER!')
   }
 }
 
@@ -171,31 +189,6 @@ app.get('/', function (request, response) {
  */
 app.post('/throwBallPlayer1', function (request, response) {
   playerPlay(player1)
-  /* player1.counter++
-  console.log('COUNTER - ' + player1.counter)
-  if (player1.run) {
-    if (player1.counter === 1) {
-      player1.roundCounter++
-      console.log('ROUND COUNTER - ' + player1.roundCounter)
-      if (player1.roundCounter > 10) {
-        console.log('GAME OVER')
-        response.redirect('/')
-        player1.run = false
-      }
-      player1.firstThrow = throwBowlingBall(11, player1)
-      console.log('FIRSTTHROW - ' + player1.firstThrow)
-    } else if (player1.counter === 2) {
-      let second = secondRound(player1.firstThrow)
-      console.log('SECONDTHROW - ' + second)
-      throwBowlingBall(second, player1)
-      console.log('SCORE - ' + player1.getScores())
-      addToTotalScoreArr(player1)
-      player1.counter = 0
-    }
-  } else {
-    console.log('TOLD YOU!')
-  } */
-
   response.redirect('/')
 })
 
