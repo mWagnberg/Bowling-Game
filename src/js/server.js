@@ -139,9 +139,15 @@ function addToTotalScoreArr (player, counter, roundCounter) {
     total += newRound
   } else {
     if (ifStrike(previousRound)) {
-      total += 10 + newRound + parseInt(player.getTotalSumScore())
-      player.setTotalScore(total)
-      total += newRound
+      if (roundCounter === 2) {
+        total += 10 + newRound
+        player.setTotalScore(total)
+        total += newRound
+      } else {
+        total += 10 + newRound + parseInt(player.getTotalSumScore())
+        player.setTotalScore(total)
+        total += newRound
+      }
     } else {
       total += newRound + parseInt(player.getTotalSumScore())
     }
